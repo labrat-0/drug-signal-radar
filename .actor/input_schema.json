@@ -5,12 +5,18 @@
   "schemaVersion": 1,
   "properties": {
     "drugName": {
+      "sectionCaption": "Drug Query",
+      "sectionDescription": "Specify which drug to search for across all four sources.",
       "title": "Drug Name",
       "type": "string",
       "description": "Name of the drug to search (e.g., 'aspirin', 'ibuprofen', 'metformin'). Required.",
-      "editor": "textfield"
+      "editor": "textfield",
+      "prefill": "Ibuprofen",
+      "default": "Ibuprofen"
     },
     "dateFrom": {
+      "sectionCaption": "Filters (Optional)",
+      "sectionDescription": "Narrow results by date range and severity.",
       "title": "Date From",
       "type": "string",
       "description": "Start date for filtering results (ISO 8601 format, e.g., '2020-01-01'). Optional.",
@@ -34,11 +40,13 @@
       "enumTitles": ["All events", "Serious events only"]
     },
     "maxResults": {
+      "sectionCaption": "Results",
+      "sectionDescription": "Control how many results to retrieve.",
       "title": "Max Results Per Source",
       "type": "integer",
-      "description": "Maximum number of records to fetch from each source. Default: 100. Free tier: capped at 25.",
+      "description": "Maximum number of records to fetch from each source. Free tier: 25. Paid: unlimited.",
       "editor": "number",
-      "default": 100,
+      "default": 25,
       "minimum": 1,
       "maximum": 10000
     }
