@@ -40,7 +40,7 @@ MVP scope: 14 features for initial launch. All features grounded in research ana
 - [ ] **API-02**: Actor implements exponential backoff retry on rate limit hits (1s → 2s → 4s, max 5 retries)
 - [ ] **API-03**: Actor handles partial source failures gracefully (if one source fails, others still return data)
 - [ ] **API-04**: Actor implements per-source error handling (skip malformed records, continue iteration)
-- [ ] **API-05**: Actor aborts run only if all sources fail; partial success is acceptable
+- [ ] **API-05**: Actor aborts run if any source fails (after exhausting retries); all-or-nothing semantics ensure users get complete drug signal intelligence or a clear failure signal to retry
 
 ### Execution & Monitoring
 
