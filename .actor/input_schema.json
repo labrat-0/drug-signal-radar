@@ -1,0 +1,47 @@
+{
+  "title": "Drug Signal Radar Input",
+  "description": "Query drug intelligence from PubMed, FAERS, ClinicalTrials.gov, and FDA Enforcement",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "drugName": {
+      "title": "Drug Name",
+      "type": "string",
+      "description": "Name of the drug to search (e.g., 'aspirin', 'ibuprofen', 'metformin'). Required.",
+      "editor": "textfield"
+    },
+    "dateFrom": {
+      "title": "Date From",
+      "type": "string",
+      "description": "Start date for filtering results (ISO 8601 format, e.g., '2020-01-01'). Optional.",
+      "editor": "textfield",
+      "default": ""
+    },
+    "dateTo": {
+      "title": "Date To",
+      "type": "string",
+      "description": "End date for filtering results (ISO 8601 format, e.g., '2024-12-31'). Optional.",
+      "editor": "textfield",
+      "default": ""
+    },
+    "severityThreshold": {
+      "title": "Severity Threshold",
+      "type": "string",
+      "description": "Filter FAERS adverse events by severity. 'serious_only' returns only serious events. Other sources are not affected. Optional.",
+      "editor": "select",
+      "default": "",
+      "enum": ["", "serious_only"],
+      "enumTitles": ["All events", "Serious events only"]
+    },
+    "maxResults": {
+      "title": "Max Results Per Source",
+      "type": "integer",
+      "description": "Maximum number of records to fetch from each source. Default: 100. Free tier: capped at 25.",
+      "editor": "number",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 10000
+    }
+  },
+  "required": ["drugName"]
+}

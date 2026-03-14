@@ -1,0 +1,19 @@
+{
+  "actorSpecification": 1,
+  "name": "drug-signal-radar",
+  "title": "Drug Signal Radar",
+  "description": "Aggregates drug intelligence from PubMed, FAERS, ClinicalTrials.gov, and FDA Enforcement into unified JSON output.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "environmentVariables": [],
+  "dockerfile": "Dockerfile",
+  "readme": "README.md",
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "fields": {},
+      "views": {}
+    }
+  }
+}
