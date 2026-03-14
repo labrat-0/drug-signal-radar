@@ -9,8 +9,8 @@ MVP scope: 14 features for initial launch. All features grounded in research ana
 
 ### Data Aggregation & Sources
 
-- [ ] **AGG-01**: Actor fetches PubMed papers via NCBI E-utilities API (reuse pubmed-scraper fetcher)
-- [ ] **AGG-02**: Actor fetches FAERS adverse events via openFDA API (reuse fda-adverse-events-scraper fetcher)
+- [x] **AGG-01**: Actor fetches PubMed papers via NCBI E-utilities API (reuse pubmed-scraper fetcher)
+- [x] **AGG-02**: Actor fetches FAERS adverse events via openFDA API (reuse fda-adverse-events-scraper fetcher)
 - [ ] **AGG-03**: Actor fetches ClinicalTrials.gov trials via REST API v2
 - [ ] **AGG-04**: Actor fetches FDA drug enforcement alerts via openFDA /drug/enforcement endpoint
 - [ ] **AGG-05**: Actor combines all four sources into single unified JSON output per drug
@@ -38,8 +38,8 @@ MVP scope: 14 features for initial launch. All features grounded in research ana
 
 - [x] **API-01**: Actor implements rate limiting (0.5 req/sec default, per-source adjustment for PubMed/openFDA limits)
 - [x] **API-02**: Actor implements exponential backoff retry on rate limit hits (1s → 2s → 4s, max 5 retries)
-- [ ] **API-03**: Actor handles partial source failures gracefully (if one source fails, others still return data)
-- [ ] **API-04**: Actor implements per-source error handling (skip malformed records, continue iteration)
+- [x] **API-03**: Actor handles partial source failures gracefully (if one source fails, others still return data)
+- [x] **API-04**: Actor implements per-source error handling (skip malformed records, continue iteration)
 - [ ] **API-05**: Actor aborts run if any source fails (after exhausting retries); all-or-nothing semantics ensure users get complete drug signal intelligence or a clear failure signal to retry
 
 ### Execution & Monitoring
@@ -93,8 +93,8 @@ Features to add once v1 is live and user feedback drives priorities.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AGG-01 | 1 | Pending |
-| AGG-02 | 1 | Pending |
+| AGG-01 | 1 | Complete |
+| AGG-02 | 1 | Complete |
 | AGG-03 | 1 | Pending |
 | AGG-04 | 1 | Pending |
 | AGG-05 | 1 | Pending |
@@ -113,8 +113,8 @@ Features to add once v1 is live and user feedback drives priorities.
 | OUT-03 | 2 | Pending |
 | API-01 | 1 | Complete (01-01) |
 | API-02 | 1 | Complete (01-01) |
-| API-03 | 1 | Pending |
-| API-04 | 1 | Pending |
+| API-03 | 1 | Complete |
+| API-04 | 1 | Complete |
 | API-05 | 1 | Pending |
 | EXE-01 | 1 | Complete (01-01) |
 | EXE-02 | 1 | Pending |
