@@ -10,7 +10,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Architecture & Data Integration** - Build foundation for async multi-source fetching with rate limiting and input validation
+- [x] **Phase 1: Architecture & Data Integration** - Build foundation for async multi-source fetching with rate limiting and input validation
 - [ ] **Phase 2: Normalization & Output** - Unify schemas, implement risk scoring, finalize output formats
 - [ ] **Phase 3: Marketplace & Launch** - Marketplace documentation, monitoring/logging, production validation
 
@@ -40,7 +40,7 @@ Plans:
 - [x] 01-02-PLAN.md — Actor entry point, input validation, free tier enforcement, input_schema.json
 - [x] 01-03-PLAN.md — PubMed (NCBI E-utilities) and FAERS (openFDA) fetchers
 - [x] 01-04-PLAN.md — ClinicalTrials.gov v2 and FDA Enforcement fetchers
-- [ ] 01-05-PLAN.md — Aggregator: concurrent fetch coordinator, batch push, state tracking
+- [x] 01-05-PLAN.md — Aggregator: concurrent fetch coordinator, batch push, state tracking
 
 ---
 
@@ -86,7 +86,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Architecture & Data Integration | 4/5 | In Progress | - |
+| 1. Architecture & Data Integration | 5/5 | Complete | 2026-03-14 |
 | 2. Normalization & Output | 0/? | Not started | - |
 | 3. Marketplace & Launch | 0/? | Not started | - |
 

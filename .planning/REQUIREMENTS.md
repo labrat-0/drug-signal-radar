@@ -13,7 +13,7 @@ MVP scope: 14 features for initial launch. All features grounded in research ana
 - [x] **AGG-02**: Actor fetches FAERS adverse events via openFDA API (reuse fda-adverse-events-scraper fetcher)
 - [x] **AGG-03**: Actor fetches ClinicalTrials.gov trials via REST API v2
 - [x] **AGG-04**: Actor fetches FDA drug enforcement alerts via openFDA /drug/enforcement endpoint
-- [ ] **AGG-05**: Actor combines all four sources into single unified JSON output per drug
+- [x] **AGG-05**: Actor combines all four sources into single unified JSON output per drug
 
 ### Input & Filtering
 
@@ -40,14 +40,14 @@ MVP scope: 14 features for initial launch. All features grounded in research ana
 - [x] **API-02**: Actor implements exponential backoff retry on rate limit hits (1s → 2s → 4s, max 5 retries)
 - [x] **API-03**: Actor handles partial source failures gracefully (if one source fails, others still return data)
 - [x] **API-04**: Actor implements per-source error handling (skip malformed records, continue iteration)
-- [ ] **API-05**: Actor aborts run if any source fails (after exhausting retries); all-or-nothing semantics ensure users get complete drug signal intelligence or a clear failure signal to retry
+- [x] **API-05**: Actor aborts run if any source fails (after exhausting retries); all-or-nothing semantics ensure users get complete drug signal intelligence or a clear failure signal to retry
 
 ### Execution & Monitoring
 
 - [x] **EXE-01**: Actor uses Apify SDK async patterns (Actor.get_input(), Actor.push_data(), Actor context manager)
-- [ ] **EXE-02**: Actor pushes data in batches of 25 records via Actor.push_data() to balance throughput vs. memory
+- [x] **EXE-02**: Actor pushes data in batches of 25 records via Actor.push_data() to balance throughput vs. memory
 - [x] **EXE-03**: Actor uses Actor.set_status_message() to show progress (e.g., "Fetching PubMed...", "✓ Complete: 45 papers")
-- [ ] **EXE-04**: Actor tracks execution state (records_fetched, records_failed per source) via Actor.use_state()
+- [x] **EXE-04**: Actor tracks execution state (records_fetched, records_failed per source) via Actor.use_state()
 
 ### Risk Scoring & Free Tier
 
@@ -97,7 +97,7 @@ Features to add once v1 is live and user feedback drives priorities.
 | AGG-02 | 1 | Complete |
 | AGG-03 | 1 | Complete |
 | AGG-04 | 1 | Complete |
-| AGG-05 | 1 | Pending |
+| AGG-05 | 1 | Complete (01-05) |
 | INP-01 | 1 | Complete (01-01) |
 | INP-02 | 1 | Complete (01-01) |
 | INP-03 | 1 | Complete (01-01) |
@@ -115,11 +115,11 @@ Features to add once v1 is live and user feedback drives priorities.
 | API-02 | 1 | Complete (01-01) |
 | API-03 | 1 | Complete |
 | API-04 | 1 | Complete |
-| API-05 | 1 | Pending |
+| API-05 | 1 | Complete (01-05) |
 | EXE-01 | 1 | Complete (01-01) |
-| EXE-02 | 1 | Pending |
+| EXE-02 | 1 | Complete (01-05) |
 | EXE-03 | 1 | Complete |
-| EXE-04 | 1 | Pending |
+| EXE-04 | 1 | Complete (01-05) |
 | SCO-01 | 2 | Pending |
 | MON-01 | 3 | Pending |
 | MON-02 | 3 | Pending |
