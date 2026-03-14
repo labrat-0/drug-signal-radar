@@ -71,12 +71,18 @@ async def fetch_with_backoff(
                 continue
             logger.warning("Unexpected HTTP %d from %s", response.status_code, url)
             return None
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
             delay = min(15.0, 1.0 * (2**attempt))
             jitter = random.uniform(0, 0.5)
+            # Log response details for debugging
+            resp_text = response.text[:200] if response else "No response object"
+            resp_status = response.status_code if response else "N/A"
             logger.warning(
-                "Invalid JSON response from %s. Retrying in %.1fs (attempt %d/%d)",
+                "Invalid JSON response from %s (status=%s, body_sample=%r). "
+                "Retrying in %.1fs (attempt %d/%d)",
                 url,
+                resp_status,
+                resp_text,
                 delay + jitter,
                 attempt + 1,
                 max_retries,

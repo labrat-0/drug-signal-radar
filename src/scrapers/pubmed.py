@@ -114,8 +114,10 @@ class PubMedFetcher:
             "tool": TOOL_NAME,
             "email": TOOL_EMAIL,
         }
+        Actor.log.info(f"PubMed EFetch: requesting {len(pmids)} PMIDs (ids={params['id'][:50]}...)")
         data = await fetch_with_backoff(self.client, EFETCH_URL, self.rate_limiter, params)
         if not data:
+            Actor.log.warning(f"PubMed EFetch: no valid JSON returned for batch of {len(pmids)} PMIDs")
             return []
 
         records = []
@@ -129,7 +131,10 @@ class PubMedFetcher:
                 records.append(record)
             except Exception as e:
                 pmid = self._safe_get_pmid(article)
-                Actor.log.warning(f"PubMed: skipping article pmid={pmid}: {e}")
+                Actor.log.warning(
+                    f"PubMed: skipping article pmid={pmid}: {type(e).__name__}: {e}. "
+                    f"Article keys: {list(article.keys()) if isinstance(article, dict) else 'not-a-dict'}"
+                )
                 self.state["pubmed_failed"] = self.state.get("pubmed_failed", 0) + 1
                 self.state["failed"] = self.state.get("failed", 0) + 1
 
