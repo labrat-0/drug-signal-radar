@@ -1,165 +1,24 @@
 {
     "actorSpecification": 1,
-    "title": "Drug Signal Radar Output Dataset",
-    "description": "Unified drug intelligence aggregating PubMed papers, adverse events, clinical trials, and FDA enforcement actions",
-    "type": "object",
-    "properties": {
-        "drug_name": {
-            "type": "string",
-            "description": "Drug name searched"
-        },
-        "aggregated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "ISO 8601 timestamp when aggregation completed"
-        },
-        "schema_version": {
-            "type": "string",
-            "description": "Output schema version (e.g., '1.0')"
-        },
-        "papers": {
-            "type": "array",
-            "description": "PubMed articles",
-            "items": {
-                "type": "object",
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "drug_name",
+                    "aggregated_at",
+                    "schema_version"
+                ]
+            },
+            "display": {
+                "component": "table",
                 "properties": {
-                    "pmid": {
-                        "type": "string",
-                        "description": "PubMed ID"
-                    },
-                    "title": {
-                        "type": "string",
-                        "description": "Article title"
-                    },
-                    "abstract": {
-                        "type": "string",
-                        "description": "Article abstract"
-                    },
-                    "pub_year": {
-                        "type": "string",
-                        "description": "Publication year (YYYY)"
-                    },
-                    "authors": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of author names"
-                    }
-                }
-            }
-        },
-        "adverse_events": {
-            "type": "array",
-            "description": "FDA FAERS adverse event reports",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "event_id": {
-                        "type": "string",
-                        "description": "FAERS event ID"
-                    },
-                    "reaction": {
-                        "type": "string",
-                        "description": "Adverse reaction description"
-                    },
-                    "serious_flag": {
-                        "type": "boolean",
-                        "description": "Whether event was serious (death, hospitalization, disability)"
-                    },
-                    "report_date": {
-                        "type": "string",
-                        "format": "date",
-                        "description": "Date report was received (ISO 8601)"
-                    },
-                    "patient_age": {
-                        "type": ["number", "null"],
-                        "description": "Patient age in years (if available)"
-                    }
-                }
-            }
-        },
-        "trials": {
-            "type": "array",
-            "description": "ClinicalTrials.gov trial records",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "trial_id": {
-                        "type": "string",
-                        "description": "ClinicalTrials.gov NCT ID"
-                    },
-                    "title": {
-                        "type": "string",
-                        "description": "Trial title"
-                    },
-                    "status": {
-                        "type": "string",
-                        "description": "Trial status (Recruiting, Active, Completed, etc.)"
-                    },
-                    "phase": {
-                        "type": "string",
-                        "description": "Trial phase (Phase 1/2/3/4)"
-                    },
-                    "enrollment": {
-                        "type": ["number", "null"],
-                        "description": "Planned enrollment number"
-                    }
-                }
-            }
-        },
-        "fda_alerts": {
-            "type": "array",
-            "description": "FDA enforcement actions and recalls",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "alert_id": {
-                        "type": "string",
-                        "description": "FDA enforcement action ID"
-                    },
-                    "action_type": {
-                        "type": "string",
-                        "description": "Type of action (Recall, Market Withdrawal, Warning, etc.)"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Detailed description of enforcement action"
-                    },
-                    "report_date": {
-                        "type": "string",
-                        "format": "date",
-                        "description": "Date of action (ISO 8601)"
-                    }
-                }
-            }
-        },
-        "sources": {
-            "type": "object",
-            "description": "Status of each source fetch",
-            "properties": {
-                "papers": {
-                    "type": "string",
-                    "enum": ["success", "partial_failure", "failed"],
-                    "description": "PubMed fetch status"
-                },
-                "adverse_events": {
-                    "type": "string",
-                    "enum": ["success", "partial_failure", "failed"],
-                    "description": "FAERS fetch status"
-                },
-                "trials": {
-                    "type": "string",
-                    "enum": ["success", "partial_failure", "failed"],
-                    "description": "ClinicalTrials.gov fetch status"
-                },
-                "fda_alerts": {
-                    "type": "string",
-                    "enum": ["success", "partial_failure", "failed"],
-                    "description": "FDA Enforcement fetch status"
+                    "drug_name": { "label": "Drug Name", "format": "text" },
+                    "aggregated_at": { "label": "Aggregated At", "format": "date-time" },
+                    "schema_version": { "label": "Schema Version", "format": "text" }
                 }
             }
         }
-    },
-    "required": ["drug_name", "aggregated_at", "schema_version", "papers", "adverse_events", "trials", "fda_alerts", "sources"]
+    }
 }
