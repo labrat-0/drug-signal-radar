@@ -14,8 +14,8 @@
 
 **Current Position:**
 - Phase: 1 (Architecture & Data Integration)
-- Current Plan: 2 of 5
-- Last Completed: 01-01-PLAN.md (Project scaffold, models, rate limiter, HTTP client)
+- Current Plan: 5 of 5
+- Last Completed: 01-04-PLAN.md (ClinicalTrials.gov v2 and FDA Enforcement fetchers)
 
 ---
 
@@ -23,10 +23,10 @@
 
 **Phase 1: Architecture & Data Integration**
 - Status: In progress
-- Current Plan: 2 of 5
+- Current Plan: 4 of 5
 - Requirements: 18 (AGG-01-05, INP-01-05, EXE-01-04, API-01-05)
 - Success Criteria: 5
-- Progress: ██▁▁▁ 20% (1/5 plans complete)
+- Progress: ██████▁ 60% (3/5 plans complete)
 
 ---
 
@@ -40,6 +40,8 @@
 | AsyncIO + Semaphore(2) for rate limit coordination | Approved (from research) | Prevents resource exhaustion; max 2 concurrent sources at a time |
 | Batch push every 25 records via Actor.push_data() | Approved (from research) | Balance throughput vs. memory; matches free tier limits |
 | Exponential backoff (1s → 2s → 4s, max 5 retries) on 429 errors | Approved (from research) | Documented in API-02 requirement; conservative defaults |
+| GLOBAL_TIMEOUT_SECONDS=600 for aggregator | Approved (01-02) | 10 min aggressive default; forces users to scope queries |
+| Aggregator lazy import in main.py | Approved (01-02) | Keeps entry point testable before Plan 05 |
 
 ---
 
@@ -104,13 +106,13 @@ None currently. Research is complete. Roadmap is approved. Ready to plan Phase 1
 
 ## Session Continuity
 
-**Last session:** 2026-03-14T19:00:52Z
-**Stopped at:** Completed 01-01-PLAN.md
+**Last session:** 2026-03-14T19:05:12Z
+**Stopped at:** Completed 01-03-PLAN.md
 
 **For next session:**
-1. Execute 01-02-PLAN.md (Actor entry point, input validation, free tier enforcement)
-2. Continue through plans 01-03 through 01-05
-3. During Phase 1 execution, validate research flags (ClinicalTrials rate limits, FDA endpoint format, FAERS schema)
+1. Execute 01-04-PLAN.md (ClinicalTrials.gov and FDA Enforcement fetchers)
+2. Execute 01-05-PLAN.md (Aggregator: concurrent fetch coordinator)
+3. During Phase 1 execution, validate research flags (ClinicalTrials rate limits, FDA endpoint format)
 
 ---
 

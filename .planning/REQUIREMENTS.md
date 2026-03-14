@@ -21,7 +21,7 @@ MVP scope: 14 features for initial launch. All features grounded in research ana
 - [x] **INP-02**: Actor accepts optional `dateFrom` and `dateTo` for temporal filtering (ISO 8601 format)
 - [x] **INP-03**: Actor accepts optional `severityThreshold` for FAERS filtering (e.g., "serious_only")
 - [x] **INP-04**: Actor accepts optional `maxResults` limit per source (default 100, free tier capped at 25)
-- [ ] **INP-05**: Actor validates inputs (non-empty drug name, sensible date ranges) and rejects invalid input with clear error message
+- [x] **INP-05**: Actor validates inputs (non-empty drug name, sensible date ranges) and rejects invalid input with clear error message
 
 ### Data Normalization & Output
 
@@ -46,7 +46,7 @@ MVP scope: 14 features for initial launch. All features grounded in research ana
 
 - [x] **EXE-01**: Actor uses Apify SDK async patterns (Actor.get_input(), Actor.push_data(), Actor context manager)
 - [ ] **EXE-02**: Actor pushes data in batches of 25 records via Actor.push_data() to balance throughput vs. memory
-- [ ] **EXE-03**: Actor uses Actor.set_status_message() to show progress (e.g., "Fetching PubMed...", "✓ Complete: 45 papers")
+- [x] **EXE-03**: Actor uses Actor.set_status_message() to show progress (e.g., "Fetching PubMed...", "✓ Complete: 45 papers")
 - [ ] **EXE-04**: Actor tracks execution state (records_fetched, records_failed per source) via Actor.use_state()
 
 ### Risk Scoring & Free Tier
@@ -102,7 +102,7 @@ Features to add once v1 is live and user feedback drives priorities.
 | INP-02 | 1 | Complete (01-01) |
 | INP-03 | 1 | Complete (01-01) |
 | INP-04 | 1 | Complete (01-01) |
-| INP-05 | 1 | Pending |
+| INP-05 | 1 | Complete |
 | NRM-01 | 2 | Pending |
 | NRM-02 | 2 | Pending |
 | NRM-03 | 2 | Pending |
@@ -118,7 +118,7 @@ Features to add once v1 is live and user feedback drives priorities.
 | API-05 | 1 | Pending |
 | EXE-01 | 1 | Complete (01-01) |
 | EXE-02 | 1 | Pending |
-| EXE-03 | 1 | Pending |
+| EXE-03 | 1 | Complete |
 | EXE-04 | 1 | Pending |
 | SCO-01 | 2 | Pending |
 | MON-01 | 3 | Pending |
