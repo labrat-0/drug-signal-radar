@@ -17,10 +17,10 @@ MVP scope: 14 features for initial launch. All features grounded in research ana
 
 ### Input & Filtering
 
-- [ ] **INP-01**: Actor accepts `drugName` input parameter (string, required)
-- [ ] **INP-02**: Actor accepts optional `dateFrom` and `dateTo` for temporal filtering (ISO 8601 format)
-- [ ] **INP-03**: Actor accepts optional `severityThreshold` for FAERS filtering (e.g., "serious_only")
-- [ ] **INP-04**: Actor accepts optional `maxResults` limit per source (default 100, free tier capped at 25)
+- [x] **INP-01**: Actor accepts `drugName` input parameter (string, required)
+- [x] **INP-02**: Actor accepts optional `dateFrom` and `dateTo` for temporal filtering (ISO 8601 format)
+- [x] **INP-03**: Actor accepts optional `severityThreshold` for FAERS filtering (e.g., "serious_only")
+- [x] **INP-04**: Actor accepts optional `maxResults` limit per source (default 100, free tier capped at 25)
 - [ ] **INP-05**: Actor validates inputs (non-empty drug name, sensible date ranges) and rejects invalid input with clear error message
 
 ### Data Normalization & Output
@@ -36,15 +36,15 @@ MVP scope: 14 features for initial launch. All features grounded in research ana
 
 ### API Coordination & Reliability
 
-- [ ] **API-01**: Actor implements rate limiting (0.5 req/sec default, per-source adjustment for PubMed/openFDA limits)
-- [ ] **API-02**: Actor implements exponential backoff retry on rate limit hits (1s → 2s → 4s, max 5 retries)
+- [x] **API-01**: Actor implements rate limiting (0.5 req/sec default, per-source adjustment for PubMed/openFDA limits)
+- [x] **API-02**: Actor implements exponential backoff retry on rate limit hits (1s → 2s → 4s, max 5 retries)
 - [ ] **API-03**: Actor handles partial source failures gracefully (if one source fails, others still return data)
 - [ ] **API-04**: Actor implements per-source error handling (skip malformed records, continue iteration)
 - [ ] **API-05**: Actor aborts run if any source fails (after exhausting retries); all-or-nothing semantics ensure users get complete drug signal intelligence or a clear failure signal to retry
 
 ### Execution & Monitoring
 
-- [ ] **EXE-01**: Actor uses Apify SDK async patterns (Actor.get_input(), Actor.push_data(), Actor context manager)
+- [x] **EXE-01**: Actor uses Apify SDK async patterns (Actor.get_input(), Actor.push_data(), Actor context manager)
 - [ ] **EXE-02**: Actor pushes data in batches of 25 records via Actor.push_data() to balance throughput vs. memory
 - [ ] **EXE-03**: Actor uses Actor.set_status_message() to show progress (e.g., "Fetching PubMed...", "✓ Complete: 45 papers")
 - [ ] **EXE-04**: Actor tracks execution state (records_fetched, records_failed per source) via Actor.use_state()
@@ -98,10 +98,10 @@ Features to add once v1 is live and user feedback drives priorities.
 | AGG-03 | 1 | Pending |
 | AGG-04 | 1 | Pending |
 | AGG-05 | 1 | Pending |
-| INP-01 | 1 | Pending |
-| INP-02 | 1 | Pending |
-| INP-03 | 1 | Pending |
-| INP-04 | 1 | Pending |
+| INP-01 | 1 | Complete (01-01) |
+| INP-02 | 1 | Complete (01-01) |
+| INP-03 | 1 | Complete (01-01) |
+| INP-04 | 1 | Complete (01-01) |
 | INP-05 | 1 | Pending |
 | NRM-01 | 2 | Pending |
 | NRM-02 | 2 | Pending |
@@ -111,12 +111,12 @@ Features to add once v1 is live and user feedback drives priorities.
 | OUT-01 | 2 | Pending |
 | OUT-02 | 2 | Pending |
 | OUT-03 | 2 | Pending |
-| API-01 | 1 | Pending |
-| API-02 | 1 | Pending |
+| API-01 | 1 | Complete (01-01) |
+| API-02 | 1 | Complete (01-01) |
 | API-03 | 1 | Pending |
 | API-04 | 1 | Pending |
 | API-05 | 1 | Pending |
-| EXE-01 | 1 | Pending |
+| EXE-01 | 1 | Complete (01-01) |
 | EXE-02 | 1 | Pending |
 | EXE-03 | 1 | Pending |
 | EXE-04 | 1 | Pending |

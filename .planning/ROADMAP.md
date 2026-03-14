@@ -36,7 +36,7 @@
 **Plans:** 5 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Project scaffold, Pydantic models, rate limiter, HTTP client
+- [x] 01-01-PLAN.md — Project scaffold, Pydantic models, rate limiter, HTTP client
 - [ ] 01-02-PLAN.md — Actor entry point, input validation, free tier enforcement, input_schema.json
 - [ ] 01-03-PLAN.md — PubMed (NCBI E-utilities) and FAERS (openFDA) fetchers
 - [ ] 01-04-PLAN.md — ClinicalTrials.gov v2 and FDA Enforcement fetchers
@@ -86,7 +86,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Architecture & Data Integration | 0/5 | Planned | - |
+| 1. Architecture & Data Integration | 1/5 | In Progress | - |
 | 2. Normalization & Output | 0/? | Not started | - |
 | 3. Marketplace & Launch | 0/? | Not started | - |
 
