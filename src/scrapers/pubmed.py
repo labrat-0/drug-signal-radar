@@ -105,40 +105,58 @@ class PubMedFetcher:
             return []
 
     async def _efetch(self, pmids: list[str]) -> list[PubMedRecord]:
-        """Fetch full records for a batch of PMIDs. Returns list of valid PubMedRecord."""
+        """Fetch full records for a batch of PMIDs in MEDLINE format. Returns list of valid PubMedRecord."""
         params = {
             "db": "pubmed",
             "id": ",".join(pmids),
-            "rettype": "abstract",
-            "retmode": "json",
+            "rettype": "medline",
+            "retmode": "text",
             "tool": TOOL_NAME,
             "email": TOOL_EMAIL,
         }
         Actor.log.info(f"PubMed EFetch: requesting {len(pmids)} PMIDs (ids={params['id'][:50]}...)")
-        data = await fetch_with_backoff(self.client, EFETCH_URL, self.rate_limiter, params)
-        if not data:
-            Actor.log.warning(f"PubMed EFetch: no valid JSON returned for batch of {len(pmids)} PMIDs")
+        response_text = await self._fetch_medline(params)
+        if not response_text:
+            Actor.log.warning(f"PubMed EFetch: no response for batch of {len(pmids)} PMIDs")
             return []
 
         records = []
-        articles = data.get("PubmedArticleSet", {}).get("PubmedArticle", [])
-        if isinstance(articles, dict):
-            articles = [articles]  # Single result comes back as dict, not list
-
-        for article in articles:
+        # MEDLINE format: records separated by blank lines
+        record_blocks = response_text.split("\n\n")
+        for block in record_blocks:
+            if not block.strip():
+                continue
             try:
-                record = self._parse_article(article)
-                records.append(record)
+                record = self._parse_medline_record(block)
+                if record:
+                    records.append(record)
             except Exception as e:
-                pmid = self._safe_get_pmid(article)
                 Actor.log.warning(
-                    f"PubMed: skipping article pmid={pmid}: {type(e).__name__}: {e}. "
-                    f"Article keys: {list(article.keys()) if isinstance(article, dict) else 'not-a-dict'}"
+                    f"PubMed: skipping MEDLINE record: {type(e).__name__}: {e}"
                 )
                 self.state["pubmed_failed"] = self.state.get("pubmed_failed", 0) + 1
                 self.state["failed"] = self.state.get("failed", 0) + 1
 
         return records
+
+    async def _fetch_medline(self, params: dict) -> str | None:
+        """Fetch MEDLINE format (returns text, not JSON). Uses fetch_with_backoff but handles text response."""
+        from src.utils.rate_limiter import RateLimiter
+        await self.rate_limiter.wait()
+        try:
+            response = await self.client.get(EFETCH_URL, params=params, timeout=30.0)
+            if response.status_code == 200:
+                return response.text
+            if response.status_code == 404:
+                return None
+            if response.status_code in {429, 500, 502, 503}:
+                Actor.log.warning(f"HTTP {response.status_code} from EFetch, treating as retriable")
+                return None
+            Actor.log.warning(f"Unexpected HTTP {response.status_code} from EFetch")
+            return None
+        except Exception as e:
+            Actor.log.warning(f"Error fetching MEDLINE: {type(e).__name__}: {e}")
+            return None
 
     def _parse_article(self, article: dict) -> PubMedRecord:
         """Parse a single PubmedArticle JSON dict into PubMedRecord."""
@@ -180,6 +198,73 @@ class PubMedFetcher:
         return PubMedRecord(
             pmid=pmid,
             title=str(title),
+            abstract=abstract,
+            pub_year=pub_year,
+            authors=authors,
+        )
+
+    def _parse_medline_record(self, medline_text: str) -> PubMedRecord | None:
+        """Parse a MEDLINE format record (text format).
+
+        MEDLINE format:
+        PMID- 12345678
+        OWN - NLM
+        STAT- PubMed
+        TI  - Article title
+        AB  - Abstract text
+        AU  - Author name
+        FAU - Full Author name
+        ...
+        """
+        lines = medline_text.strip().split("\n")
+        fields = {}
+        current_field = None
+        current_value = []
+
+        for line in lines:
+            if not line:
+                continue
+            # Field lines start with a 4-char code followed by "- "
+            if len(line) >= 6 and line[4:6] == "- ":
+                # Save previous field if exists
+                if current_field:
+                    field_code = current_field.strip()
+                    field_value = " ".join(current_value).strip()
+                    if field_code not in fields:
+                        fields[field_code] = []
+                    fields[field_code].append(field_value)
+                # Start new field
+                current_field = line[:4]
+                current_value = [line[6:]]
+            elif current_field:
+                # Continuation of previous field (indented)
+                current_value.append(line)
+
+        # Don't forget the last field
+        if current_field:
+            field_code = current_field.strip()
+            field_value = " ".join(current_value).strip()
+            if field_code not in fields:
+                fields[field_code] = []
+            fields[field_code].append(field_value)
+
+        # Extract required fields
+        pmid_list = fields.get("PMID", [])
+        if not pmid_list:
+            return None
+        pmid = pmid_list[0]
+
+        title = fields.get("TI", [""])[0]
+        abstract = " ".join(fields.get("AB", []))
+        authors = [author.split(" (")[0] for author in fields.get("AU", [])]  # Remove affiliations
+
+        # Extract year from publication date (DP field)
+        pub_date = fields.get("DP", [""])[0]
+        pub_year = pub_date[:4] if pub_date and pub_date[0].isdigit() else ""
+
+        return PubMedRecord(
+            pmid=pmid,
+            title=title,
             abstract=abstract,
             pub_year=pub_year,
             authors=authors,
