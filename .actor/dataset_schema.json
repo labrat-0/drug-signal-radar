@@ -1,4 +1,5 @@
 {
+    "actorSpecification": 1,
     "title": "Drug Signal Radar Output Dataset",
     "description": "Unified drug intelligence aggregating PubMed papers, adverse events, clinical trials, and FDA enforcement actions",
     "type": "object",
