@@ -33,7 +33,14 @@
 4. Actor batches records in groups of 25 and pushes to Apify dataset without memory spikes
 5. Actor completes typical multi-source query in under 10 minutes with visible progress messages
 
-**Plans:** TBD
+**Plans:** 5 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project scaffold, Pydantic models, rate limiter, HTTP client
+- [ ] 01-02-PLAN.md — Actor entry point, input validation, free tier enforcement, input_schema.json
+- [ ] 01-03-PLAN.md — PubMed (NCBI E-utilities) and FAERS (openFDA) fetchers
+- [ ] 01-04-PLAN.md — ClinicalTrials.gov v2 and FDA Enforcement fetchers
+- [ ] 01-05-PLAN.md — Aggregator: concurrent fetch coordinator, batch push, state tracking
 
 ---
 
@@ -66,7 +73,7 @@
 
 **Success Criteria** (what must be TRUE):
 1. Actor enforces free tier limits (max 25 results per source) via APIFY_IS_AT_HOME + APIFY_USER_IS_PAYING environment variables
-2. Actor provides clear logging throughout execution via Actor.log with status messages (e.g., "Fetching PubMed...", "✓ Complete: 45 papers")
+2. Actor provides clear logging throughout execution via Actor.log with status messages (e.g., "Fetching PubMed...", "Complete: 45 papers")
 3. Actor includes .actor/input_schema.json defining all parameters (drugName, dateFrom, dateTo, severityThreshold, maxResults) with types and defaults
 4. Actor includes comprehensive README with example queries, output schema documentation, error codes, and usage instructions
 5. Actor is published to Apify marketplace with title, description, tags, and link to GitHub repository
@@ -79,10 +86,11 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Architecture & Data Integration | 0/? | Not started | - |
+| 1. Architecture & Data Integration | 0/5 | Planned | - |
 | 2. Normalization & Output | 0/? | Not started | - |
 | 3. Marketplace & Launch | 0/? | Not started | - |
 
 ---
 
 *Roadmap created: 2026-03-14*
+*Phase 1 plans finalized: 2026-03-14*
