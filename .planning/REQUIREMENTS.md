@@ -11,8 +11,8 @@ MVP scope: 14 features for initial launch. All features grounded in research ana
 
 - [x] **AGG-01**: Actor fetches PubMed papers via NCBI E-utilities API (reuse pubmed-scraper fetcher)
 - [x] **AGG-02**: Actor fetches FAERS adverse events via openFDA API (reuse fda-adverse-events-scraper fetcher)
-- [ ] **AGG-03**: Actor fetches ClinicalTrials.gov trials via REST API v2
-- [ ] **AGG-04**: Actor fetches FDA drug enforcement alerts via openFDA /drug/enforcement endpoint
+- [x] **AGG-03**: Actor fetches ClinicalTrials.gov trials via REST API v2
+- [x] **AGG-04**: Actor fetches FDA drug enforcement alerts via openFDA /drug/enforcement endpoint
 - [ ] **AGG-05**: Actor combines all four sources into single unified JSON output per drug
 
 ### Input & Filtering
@@ -95,8 +95,8 @@ Features to add once v1 is live and user feedback drives priorities.
 |-------------|-------|--------|
 | AGG-01 | 1 | Complete |
 | AGG-02 | 1 | Complete |
-| AGG-03 | 1 | Pending |
-| AGG-04 | 1 | Pending |
+| AGG-03 | 1 | Complete |
+| AGG-04 | 1 | Complete |
 | AGG-05 | 1 | Pending |
 | INP-01 | 1 | Complete (01-01) |
 | INP-02 | 1 | Complete (01-01) |
