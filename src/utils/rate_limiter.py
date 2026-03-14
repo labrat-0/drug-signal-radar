@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 import random
 
@@ -70,6 +71,18 @@ async def fetch_with_backoff(
                 continue
             logger.warning("Unexpected HTTP %d from %s", response.status_code, url)
             return None
+        except json.JSONDecodeError:
+            delay = min(15.0, 1.0 * (2**attempt))
+            jitter = random.uniform(0, 0.5)
+            logger.warning(
+                "Invalid JSON response from %s. Retrying in %.1fs (attempt %d/%d)",
+                url,
+                delay + jitter,
+                attempt + 1,
+                max_retries,
+            )
+            await asyncio.sleep(delay + jitter)
+            continue
         except asyncio.TimeoutError:
             delay = min(20.0, 2.0 * (attempt + 1))
             logger.warning("Timeout fetching %s. Retrying in %ds", url, delay)
