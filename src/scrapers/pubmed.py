@@ -64,6 +64,8 @@ class PubMedFetcher:
                 if fetched >= self.config.max_results:
                     return
                 yield record
+                self.state["pubmed_count"] = self.state.get("pubmed_count", 0) + 1
+                self.state["scraped"] = self.state.get("scraped", 0) + 1
                 fetched += 1
 
         await Actor.set_status_message(f"PubMed: complete ({fetched} papers)")
