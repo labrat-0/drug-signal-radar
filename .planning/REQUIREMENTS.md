@@ -89,49 +89,49 @@ Features to add once v1 is live and user feedback drives priorities.
 | Daily email digests | Out of Apify actor scope; requires separate email workflow tool. |
 | Company enrichment (industry, location, stock ticker) | Nice-to-have; defer until clear user demand. |
 
-## Traceability (Empty Initially, Filled During Roadmap)
+## Traceability
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AGG-01 | Pending | Pending |
-| AGG-02 | Pending | Pending |
-| AGG-03 | Pending | Pending |
-| AGG-04 | Pending | Pending |
-| AGG-05 | Pending | Pending |
-| INP-01 | Pending | Pending |
-| INP-02 | Pending | Pending |
-| INP-03 | Pending | Pending |
-| INP-04 | Pending | Pending |
-| INP-05 | Pending | Pending |
-| NRM-01 | Pending | Pending |
-| NRM-02 | Pending | Pending |
-| NRM-03 | Pending | Pending |
-| NRM-04 | Pending | Pending |
-| NRM-05 | Pending | Pending |
-| OUT-01 | Pending | Pending |
-| OUT-02 | Pending | Pending |
-| OUT-03 | Pending | Pending |
-| API-01 | Pending | Pending |
-| API-02 | Pending | Pending |
-| API-03 | Pending | Pending |
-| API-04 | Pending | Pending |
-| API-05 | Pending | Pending |
-| EXE-01 | Pending | Pending |
-| EXE-02 | Pending | Pending |
-| EXE-03 | Pending | Pending |
-| EXE-04 | Pending | Pending |
-| SCO-01 | Pending | Pending |
-| MON-01 | Pending | Pending |
-| MON-02 | Pending | Pending |
-| MKT-01 | Pending | Pending |
-| MKT-02 | Pending | Pending |
-| MKT-03 | Pending | Pending |
+| AGG-01 | 1 | Pending |
+| AGG-02 | 1 | Pending |
+| AGG-03 | 1 | Pending |
+| AGG-04 | 1 | Pending |
+| AGG-05 | 1 | Pending |
+| INP-01 | 1 | Pending |
+| INP-02 | 1 | Pending |
+| INP-03 | 1 | Pending |
+| INP-04 | 1 | Pending |
+| INP-05 | 1 | Pending |
+| NRM-01 | 2 | Pending |
+| NRM-02 | 2 | Pending |
+| NRM-03 | 2 | Pending |
+| NRM-04 | 2 | Pending |
+| NRM-05 | 2 | Pending |
+| OUT-01 | 2 | Pending |
+| OUT-02 | 2 | Pending |
+| OUT-03 | 2 | Pending |
+| API-01 | 1 | Pending |
+| API-02 | 1 | Pending |
+| API-03 | 1 | Pending |
+| API-04 | 1 | Pending |
+| API-05 | 1 | Pending |
+| EXE-01 | 1 | Pending |
+| EXE-02 | 1 | Pending |
+| EXE-03 | 1 | Pending |
+| EXE-04 | 1 | Pending |
+| SCO-01 | 2 | Pending |
+| MON-01 | 3 | Pending |
+| MON-02 | 3 | Pending |
+| MKT-01 | 3 | Pending |
+| MKT-02 | 3 | Pending |
+| MKT-03 | 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 32 total
-- Mapped to phases: 0 (traceability filled during roadmap)
-- Unmapped: 32 ⚠️
+- Mapped to phases: 32 (Phase 1: 18, Phase 2: 9, Phase 3: 5)
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-14*
-*Last updated: 2026-03-14 after research synthesis*
+*Traceability updated: 2026-03-14 after roadmap creation*
