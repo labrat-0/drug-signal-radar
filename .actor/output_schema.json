@@ -1,0 +1,12 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Drug Signal Radar Results",
+    "description": "Unified drug intelligence from PubMed, FDA FAERS, ClinicalTrials.gov, and FDA Enforcement actions.",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Results",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}
